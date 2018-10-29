@@ -9,6 +9,7 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -55,6 +56,8 @@ import org.unbescape.javascript.JavaScriptEscape;
 import org.unbescape.javascript.JavaScriptEscapeLevel;
 import org.unbescape.javascript.JavaScriptEscapeType;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
+import for3ds.*;
 
 import java.lang.reflect.Method;
 import java.util.stream.IntStream;
@@ -1008,6 +1011,7 @@ private Ngrams ngrams;
             tags.add(new Tag("Encrypt","is_like_english",true,"is_like_english(String str)"));
             tags.add(new Tag("Encrypt","index_of_coincidence",true,"index_of_coincidence(String str)"));
             tags.add(new Tag("Encrypt","guess_key_length",true,"guess_key_length(String ciphertext)"));
+            tags.add(new Tag("Encode","pareq",true,"pareq_encode(String str)"));
             tags.add(new Tag("Encode","base32",true,"base32_encode(String str)"));
 			tags.add(new Tag("Encode","base64",true,"base64Encode(String str)"));
             tags.add(new Tag("Encode","base64url",true,"base64urlEncode(String str)"));
@@ -1036,6 +1040,7 @@ private Ngrams ngrams;
 			tags.add(new Tag("Decode","auto_decode",true,"auto_decode(String str)"));
 			tags.add(new Tag("Decode","d_base32",true,"decode_base32(String str)"));
 			tags.add(new Tag("Decode","d_base64",true,"decode_base64(String str)"));
+            tags.add(new Tag("Decode","d_pareq",true,"decode_pareq(String str)"));
             tags.add(new Tag("Decode","d_base64url",true,"decode_base64url(String str)"));
 			tags.add(new Tag("Decode","d_html_entities",true,"decode_html_entities(String str)"));
 			tags.add(new Tag("Decode","d_html5_entities",true,"decode_html5_entities(String str)"));
@@ -1331,6 +1336,24 @@ private Ngrams ngrams;
 			Base32 base32 = new Base32();
 			return new String(base32.decode(str.getBytes()));
 		}
+        String PareqEncode(String str) {
+            PAReqEncoder Pencode = new PAReqEncoder();
+            try {
+                String string =  new String(Pencode.modifyBytes(str.getBytes()), StandardCharsets.UTF_8);
+                return string;
+            } catch(Exception e){
+                return (e.getMessage());
+            }
+        }
+        String decode_Pareq(String str) {
+            PAReqDecoder Pdecode = new PAReqDecoder();
+            try {
+                String string =  new String(Pdecode.modifyBytes(str.getBytes()), StandardCharsets.UTF_8);
+                return string;
+            } catch(Exception e){
+                return (e.getMessage());
+            }
+        }
 		String base64Encode(String str) {
 			return helpers.base64Encode(str);
 		}
@@ -3033,6 +3056,12 @@ private Ngrams ngrams;
                     break;
                 case "d_html5_entities":
                     output = this.decode_html5_entities(output);
+                    break;
+                case "Pareq":
+                    output = this.PareqEncode(output);
+                    break;
+                case "d_Pareq":
+                    output = this.decode_Pareq(output);
                     break;
                 case "base32":
                     output = this.base32_encode(output);

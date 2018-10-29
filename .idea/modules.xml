@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/hackvertor.iml" filepath="$PROJECT_DIR$/hackvertor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hackvertor_pareq_mode.iml" filepath="$PROJECT_DIR$/hackvertor_pareq_mode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
     </modules>
   </component>
 </project>

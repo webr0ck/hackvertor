@@ -5,9 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>uk.co.hackvertor.hackvertor-burp</groupId>
-    <artifactId>hackvertor</artifactId>
-    <version>0.6.7.2</version>
+    <artifactId>hackvertor_pareq_mode</artifactId>
+    <version>0.6.7.2_pareq_mode</version>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.exbin.utils/exbin-binary_data -->
+        <dependency>
+            <groupId>org.exbin.utils</groupId>
+            <artifactId>exbin-binary_data</artifactId>
+            <version>0.1.2</version>
+        </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
